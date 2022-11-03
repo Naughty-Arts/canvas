@@ -18,5 +18,6 @@ Color canvas_at(Canvas* canvas, int x, int y);
 void canvas_set(Canvas* canvas, int x, int y, Color color);
 void canvas_to_ppm(FILE* ppm_file, Canvas* canvas);
 char* canvas_string(Canvas* canvas);
+void canvas_print(Canvas* canvas);
 
 #endif

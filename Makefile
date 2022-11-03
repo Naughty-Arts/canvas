@@ -7,3 +7,7 @@ lib/canvas.h: canvas.h
 lib/libcanvas.a: canvas.c canvas.h
 	gcc -std=c2x -c canvas.c -o bin/canvas.o -I"C:\\libs" -L"C:\\libs" -lcolor
 	ar rcs lib/libcanvas.a bin/canvas.o
+
+install: lib/canvas.h lib/libcanvas.a
+	cp lib/canvas.h "C:\\libs\canvas.h"
+	cp lib/libcanvas.a "C:\\libs\libcanvas.a"

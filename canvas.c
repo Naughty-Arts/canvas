@@ -84,3 +84,16 @@ char* canvas_string(Canvas* canvas)
 	}
 	return buffer;
 }
+
+void canvas_print(Canvas* canvas)
+{
+	for (int y = 0; y < canvas->height; ++y)
+	{
+		for (int x = 0; x < canvas->width; ++x)
+		{
+			Color color = canvas_at(canvas, x, y);
+			printf(color_terminal(color, "#"));
+		}
+		printf("\n");
+	}
+}
