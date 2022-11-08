@@ -6,8 +6,8 @@
 Canvas* canvas_create(int width, int height)
 {
 	Canvas* canvas = malloc(sizeof(Canvas));
-	canvas->data = malloc(sizeof(Color) * width * height);
-	memset(canvas->data, 0, sizeof(Color) * width * height);
+	canvas->data = malloc(sizeof(c) * width * height);
+	memset(canvas->data, 0, sizeof(c) * width * height);
 	canvas->width = width;
 	canvas->height = height;
 	return canvas;
@@ -19,7 +19,7 @@ void canvas_free(Canvas* canvas)
 	free(canvas);
 }
 
-void canvas_clear(Canvas* canvas, Color color)
+void canvas_clear(Canvas* canvas, c color)
 {
 	for (int y = 0; y < canvas->height; ++y)
 	{
@@ -30,17 +30,22 @@ void canvas_clear(Canvas* canvas, Color color)
 	}
 }
 
-Color canvas_at(Canvas* canvas, int x, int y)
+c canvas_at(Canvas* canvas, int x, int y)
 {
-	if (x < 0 || x >= canvas->width) black;
-	if (y < 0 || y >= canvas->height) black;
+	c b = black;
+	if (x < 0 || x >= canvas->width) return b;
+	if (y < 0 || y >= canvas->height) return b;
 	return canvas->data[y * canvas->width + x];
 }
 
-void canvas_set(Canvas* canvas, int x, int y, Color color)
+void canvas_set(Canvas* canvas, int x, int y, c color)
 {
 	if (x < 0 || x >= canvas->width) return;
 	if (y < 0 || y >= canvas->height) return;
+	if (color.r > 1) color.r = 1;
+	if (color.g > 1) color.g = 1;
+	if (color.b > 1) color.b = 1;
+	if (color.a > 1) color.a = 1;
 	canvas->data[y * canvas->width + x] = color;
 }
 
@@ -53,11 +58,11 @@ void canvas_to_ppm(FILE* ppm_file, Canvas* canvas)
 	{
 		for (int x = 0; x < canvas->width; ++x)
 		{
-			Color color = canvas->data[y * canvas->width + x];
-			int red = color.r * 255;
-			int green = color.g * 255;
-			int blue = color.b * 255;
-			fprintf(ppm_file, "%d %d %d\n", red, green, blue);
+			c color = canvas->data[y * canvas->width + x];
+			int r = color.r * 255;
+			int g = color.g * 255;
+			int b = color.b * 255;
+			fprintf(ppm_file, "%d %d %d\n", r, g, b);
 		}
 	}
 }
@@ -70,7 +75,7 @@ char* canvas_string(Canvas* canvas)
 	{
 		for (int x = 0; x < canvas->width; ++x)
 		{
-			Color color = canvas_at(canvas, x, y);
+			c color = canvas_at(canvas, x, y);
 			if (color.r > 0.5)
 			{
 				p += sprintf(p, "#");
@@ -91,8 +96,8 @@ void canvas_print(Canvas* canvas)
 	{
 		for (int x = 0; x < canvas->width; ++x)
 		{
-			Color color = canvas_at(canvas, x, y);
-			printf(color_terminal(color, "#"));
+			c color = canvas_at(canvas, x, y);
+			cterm("#", color);
 		}
 		printf("\n");
 	}

@@ -8,14 +8,14 @@ typedef struct
 {
 	int width;
 	int height;
-	Color* data;
+	c* data;
 } Canvas;
 
 Canvas* canvas_create(int width, int height);
 void canvas_free(Canvas* canvas);
-void canvas_clear(Canvas* canvas, Color color);
-Color canvas_at(Canvas* canvas, int x, int y);
-void canvas_set(Canvas* canvas, int x, int y, Color color);
+void canvas_clear(Canvas* canvas, c color);
+c canvas_at(Canvas* canvas, int x, int y);
+void canvas_set(Canvas* canvas, int x, int y, c color);
 void canvas_to_ppm(FILE* ppm_file, Canvas* canvas);
 char* canvas_string(Canvas* canvas);
 void canvas_print(Canvas* canvas);
