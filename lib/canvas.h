@@ -25,6 +25,4 @@ typedef struct
 
 #define canvas_prnt(_canvas) for (int y = 0; y < _canvas->h; ++y) { for (int x = 0; x < _canvas->w; ++x) { c color; canvas_at(color, _canvas, x, y); cterm("#", color); } printf("\n"); }
 
-void canvas_to_ppm(FILE* ppm_file, canvas* canvas);
-
 #endif
