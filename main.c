@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "canvas.h"
 
@@ -6,7 +8,8 @@ int main()
 {
 	printf("------------------ Canvas -------------------- \n");
 
-	Canvas* canvas = canvas_create(32, 16);
+	canvas* canvas;
+	canvas_make(canvas, 32, 16);
 
 	c r = red;
 	c b = blue;
@@ -31,7 +34,7 @@ int main()
 		canvas_set(canvas, 31, i, b);
 	}
 
-	canvas_print(canvas);
+	canvas_prnt(canvas);
 	printf("\n");
 
 	return 0;
