@@ -13,7 +13,7 @@ typedef struct
 
 #define canvas_free(_canvas) free(_canvas->d); free(_canvas)
 #define canvas_clear(_canvas, color) for (int y = 0; y < _canvas->height; ++i) { int offset = _canvas->w * y; for (int x = 0; x < _canvas->width; ++x) { _canvas->d[offset + x] = color; } }
-#define canvas_at(N, _canvas, x, y) { c b = black; if (x < 0 || x >= _canvas->w) N = b; else if (y < 0 || y >= _canvas->h) N = b; else N = _canvas->d[y * _canvas->w + x]; }
+#define canvas_at(N, _canvas, x, y) { c b = cblack; if (x < 0 || x >= _canvas->w) N = b; else if (y < 0 || y >= _canvas->h) N = b; else N = _canvas->d[y * _canvas->w + x]; }
 #define canvas_set(_canvas, x, y, color) if (x >= 0 && x < _canvas->w && y >= 0 && y < _canvas->h) {\
 											c result = { color.r, color.g, color.b, color.a };\
 											if (result.r > 1) result.r = 1; if (result.r < 0) result.r = 0;\
