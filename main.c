@@ -8,8 +8,7 @@ int main()
 {
 	printf("------------------ Canvas -------------------- \n");
 
-	canvas* canvas;
-	canvas_make(canvas, 32, 16);
+	canvas* canvas = canvas_make(32, 16);
 
 	c r = cred;
 	c b = cblue;
